@@ -1,0 +1,19 @@
+<template>
+	<div class="page">
+		login page
+	</div>
+</template>
+
+<script>
+export default {
+	name: '',
+	components: {},
+	data () {
+		return {
+
+		}
+	}
+}
+</script>
+
+<style lang="stylus" rel="stylesheet/stylus"></style>
