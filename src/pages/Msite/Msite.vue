@@ -1,9 +1,9 @@
 <template>
 	<div class="msite">
 		<!-- 首页头部-->
-		<HeaderTop title="上海市浦东新区川沙新镇厚度">
+		<HeaderTop :title="address.name">
 			<router-link slot="search"
-									 to="serach"
+									 to="/serach"
 									 class="header_search">
 				<i class="iconfont icon-sousuo"></i>
 			</router-link>
@@ -31,8 +31,7 @@
 </template>
 
 <script>
-import BScroll from 'better-scroll'
-import Swiper from 'swiper'
+import { mapState } from 'vuex'
 import 'swiper/dist/css/swiper.min.css'
 import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
 import MsiteNav from './components/MsiteNav/MsiteNav.vue'
@@ -45,17 +44,11 @@ export default {
 		ShopList
 	},
 	mounted () {
-		new Swiper('.swiper-container', {
-			loop: true, // 可以循环轮播
-			// 如果需要分页器
-			pagination: {
-				el: '.swiper-pagination',
-			},
-		})
-
-		new BScroll('.miste-content-wrapper', {
-			click: true
-		})
+		this.$store.dispatch('getCategorys')
+		this.$store.dispatch('getShops')
+	},
+	computed: {
+		...mapState(['address', 'userInfo'])
 	}
 }
 </script>
