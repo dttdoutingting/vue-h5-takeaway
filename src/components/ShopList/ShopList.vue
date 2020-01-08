@@ -20,14 +20,9 @@
 						</section>
 						<section class="shop_rating_order">
 							<section class="shop_rating_order_left">
-								<div class="star star-24">
-									<span class="star-item on"></span>
-									<span class="star-item on"></span>
-									<span class="star-item on"></span>
-									<span class="star-item half"></span>
-									<span class="star-item off"></span>
-								</div>
-								<div class="rating_section"> 3.6 </div>
+								<Star :score="4.5"
+											:size="24" />
+								<div class="rating_section"> 4.5 </div>
 								<div class="order_section"> 月售 106 单 </div>
 							</section>
 							<section class="shop_rating_order_right">
@@ -50,9 +45,13 @@
 </template>
 
 <script>
+import Star from '../Star/Star.vue'
+
 export default {
 	name: '',
-	components: {},
+	components: {
+		Star
+	},
 	data () {
 		return {
 
@@ -92,7 +91,6 @@ export default {
 						clearFix()
 						width 100%
 						.shop_title
-							text_ellipsis
 							float left
 							width 200px
 							color #333
@@ -102,8 +100,8 @@ export default {
 							&::before
 								content '品牌'
 								display inline-block
-								font-size 11px
-								line-height 11px
+								font-size 12px
+								line-height 12px
 								color #333
 								background-color #ffd930
 								padding 2px 2px

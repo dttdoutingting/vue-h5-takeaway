@@ -53,8 +53,6 @@ export default {
 				.link_to_food
 					width 25%
 					.food_container
-						display block
-						width 100%
 						text-align center
 						padding-bottom 10px
 						font-size 0
