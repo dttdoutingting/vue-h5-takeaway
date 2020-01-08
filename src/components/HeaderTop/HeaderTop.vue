@@ -1,10 +1,10 @@
 <template>
 	<header class="header">
-		<slot name="left"></slot>
+		<slot name="search"></slot>
 		<span class="header_title">
 			<span class="header_title_text ellipsis">{{title}}</span>
 		</span>
-		<slot name="right"></slot>
+		<slot name="login"></slot>
 	</header>
 </template>
 
