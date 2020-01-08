@@ -1,17 +1,16 @@
 <template>
   <div class="order">
-    <header class="header">
-      <a class="header_title">
-        <span class="header_title_text ellipsis">订单</span>
-      </a>
-    </header>
+    <HeaderTop title="订单"></HeaderTop>
   </div>
 </template>
 
 <script>
+import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
 export default {
   name: '',
-  components: {},
+  components: {
+    HeaderTop
+  },
   data () {
     return {
 
@@ -22,25 +21,4 @@ export default {
 
 <style lang="stylus" rel="stylesheet/stylus">
   @import "../../common/stylus/mixins.styl"
-  .order
-    .header
-      background-color #02a774
-      position fixed
-      z-index 100
-      left 0
-      top 0
-      width 100%
-      height 45px
-      .header_title
-        position absolute
-        top 50%
-        left 50%
-        transform translate(-50%, -50%)
-        width 50%
-        color #fff
-        text-align center
-        .header_title_text
-          font-size 20px
-          color #fff
-          display block
 </style>
