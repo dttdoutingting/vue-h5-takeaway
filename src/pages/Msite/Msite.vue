@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import BScroll from 'better-scroll'
 import Swiper from 'swiper'
 import 'swiper/dist/css/swiper.min.css'
 import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
@@ -45,10 +46,15 @@ export default {
 	},
 	mounted () {
 		new Swiper('.swiper-container', {
+			loop: true, // 可以循环轮播
+			// 如果需要分页器
 			pagination: {
-				el: '.swiper-pagination'
+				el: '.swiper-pagination',
 			},
-			loop: true
+		})
+
+		new BScroll('.miste-content-wrapper', {
+			click: true
 		})
 	}
 }
@@ -56,7 +62,7 @@ export default {
 
 <style lang="stylus" rel="stylesheet/stylus">
 @import '../../common/stylus/mixins.styl'
-.msite
+.msite // 首页
 	width 100%
 	.miste-content-wrapper
 		position fixed
@@ -66,9 +72,9 @@ export default {
 		.msite_shop_list
 			top-border-1px(#e4e4e4)
 			margin-top 10px
-			background-color #fff
+			background #fff
 			.shop_header
-				padding 10px 10px 0 10px
+				padding 10px 10px 0
 				.shop_icon
 					margin-left 5px
 					color #999

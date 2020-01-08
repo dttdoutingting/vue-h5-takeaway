@@ -100,8 +100,8 @@ export default {
 							&::before
 								content '品牌'
 								display inline-block
-								font-size 12px
-								line-height 12px
+								font-size 11px
+								line-height 11px
 								color #333
 								background-color #ffd930
 								padding 2px 2px
@@ -125,44 +125,6 @@ export default {
 						.shop_rating_order_left
 							float left
 							color #ff9a0d
-							.star // 2x图3x图
-								float left
-								font-size 0
-								.star-item
-									display inline-block
-									background-repeat no-repeat
-								&.star-48
-									.star-item, width 20px, height 20px, margin-right 22px, background-size 20px 20px, &:last-child
-										margin-right 0
-									&.on
-										bg-image('./images/stars/star48_on')
-									&.half
-										bg-image('./images/stars/star48_half')
-									&.off
-										bg-image('./images/stars/star48_off')
-								&.star-36
-									.star-item, width 15px, height 15px, margin-right 6px, background-size 15px 15px, &:last-child
-										margin-right 0
-									&.on
-										bg-image('./images/stars/star36_on')
-									&.half
-										bg-image('./images/stars/star36_half')
-									&.off
-										bg-image('./images/stars/star36_off')
-								&.star-24
-									.star-item
-										width 10px
-										height 10px
-										margin-right 3px
-										background-size 10px 10px
-										&:last-child
-											margin-right 0
-										&.on
-											bg-image('./images/stars/star24_on')
-										&.half
-											bg-image('./images/stars/star24_half')
-										&.off
-											bg-image('./images/stars/star24_off')
 							.rating_section
 								float left
 								font-size 10px

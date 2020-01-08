@@ -10,7 +10,7 @@
 						 v-for="item in 8"
 						 :key="item">
 						<div class="food_container">
-							<img src="./images/nav/2.jpg">
+							<img src="./images/nav/1.jpg">
 						</div>
 						<span>甜品饮品</span>
 					</a>
@@ -37,8 +37,9 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus">
 .msite_nav
 	bottom-border-1px(#e4e4e4)
+	padding-top 15px
 	height 200px
-	background-color #fff
+	background #fff
 	.swiper-container
 		width 100%
 		height 100%
@@ -53,6 +54,8 @@ export default {
 				.link_to_food
 					width 25%
 					.food_container
+						display block
+						width 100%
 						text-align center
 						padding-bottom 10px
 						font-size 0
@@ -68,5 +71,5 @@ export default {
 						color #666
 		.swiper-pagination
 			>span.swiper-pagination-bullet-active
-				background-color #02a774
+				background #02a774
 </style>
