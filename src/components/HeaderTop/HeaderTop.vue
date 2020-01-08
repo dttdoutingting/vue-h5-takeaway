@@ -58,4 +58,3 @@ export default {
       .header_login_text
         color #fff
 </style>
-
