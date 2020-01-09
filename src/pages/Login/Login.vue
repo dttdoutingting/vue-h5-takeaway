@@ -61,8 +61,9 @@
 										 :class="showPwd?'on':'off'"
 										 @click="showPwd=!showPwd">
 									<div class="switch_circle"
-											 :class="{right: showPwd}"></div>
-									<span class="switch_text">{{showPwd ? 'abc' : '...'}}</span>
+											 :class="{right: showPwd}">
+									</div>
+									<span class="switch_text">{{showPwd ? 'abc' : ''}}</span>
 								</div>
 							</section>
 							<section class="login_message">
@@ -89,13 +90,19 @@
 				<i class="iconfont icon-jiantou2"></i>
 			</a>
 		</div>
+
+		<AlertTip :alertText="alertText"
+							v-show="alertShow"
+							@closeTip="closeTip" />
 	</section>
 </template>
 
 <script>
+import AlertTip from '../../components/AlertTip/AlertTip.vue'
+import { reqSendCode, reqSmsLogin, reqPwdLogin } from '../../api'
 export default {
 	name: '',
-	components: {},
+	components: { AlertTip },
 	data () {
 		return {
 			loginWay: false, // true代表短信登陆, false代表密码
@@ -158,7 +165,7 @@ export default {
 			// 前台表单验证
 			if (this.loginWay) {  // 短信登陆
 				const { rightPhone, phone, code } = this
-				if (!this.rightPhone) {
+				if (!rightPhone) {
 					// 手机号不正确
 					this.showAlert('手机号不正确')
 					return
@@ -172,15 +179,15 @@ export default {
 
 			} else {// 密码登陆
 				const { name, pwd, captcha } = this
-				if (!this.name) {
+				if (!name) {
 					// 用户名必须指定
 					this.showAlert('用户名必须指定')
 					return
-				} else if (!this.pwd) {
+				} else if (!pwd) {
 					// 密码必须指定
 					this.showAlert('密码必须指定')
 					return
-				} else if (!this.captcha) {
+				} else if (!captcha) {
 					// 验证码必须指定
 					this.showAlert('验证码必须指定')
 					return
