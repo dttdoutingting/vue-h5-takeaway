@@ -15,6 +15,8 @@ export default {
 	created () {
 		// 异步获取address
 		this.$store.dispatch('getAddress')
+		// 异步获取登录用户信息
+		this.$store.dispatch('getUserInfo')
 	}
 }
 </script>

@@ -8,9 +8,14 @@
 				<i class="iconfont icon-sousuo"></i>
 			</router-link>
 			<router-link slot="login"
-									 to="/login"
+									 :to="userInfo._id?'/userInfo':'/login'"
 									 class="header_login">
-				<span class="header_login_text">登录|注册</span>
+				<span class="header_login_text"
+							v-if="userInfo._id">登录|注册</span>
+				<span class="header_login_text"
+							v-else>
+					<i class="iconfont icon-person"></i>
+				</span>
 			</router-link>
 		</HeaderTop>
 		<div class="miste-content-wrapper">
