@@ -28,6 +28,9 @@ export default {
 		return {
 
 		}
+	},
+	mounted () {
+		this.$store.dispatch('getShopInfo')
 	}
 }
 </script>
