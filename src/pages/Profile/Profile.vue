@@ -98,17 +98,18 @@
 			</a>
 		</section>
 
-		<!-- <section class="profile_my_order border-1px">
+		<section class="profile_my_order border-1px">
 			<mt-button type="danger"
 								 style="width: 100%"
 								 v-if="userInfo._id"
 								 @click="logout">退出登陆</mt-button>
-		</section> -->
+		</section>
 	</section>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import { MessageBox } from 'mint-ui'
 import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
 export default {
 	name: '',
@@ -122,6 +123,13 @@ export default {
 	},
 	computed: {
 		...mapState(['userInfo'])
+	},
+	methods: {
+		logout () {
+			MessageBox.confirm('确定退出登录吗？').then(action => {
+				this.$store.dispatch('logout')
+			})
+		}
 	}
 }
 </script>
