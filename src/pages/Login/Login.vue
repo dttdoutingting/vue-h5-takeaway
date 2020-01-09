@@ -72,7 +72,7 @@
 											 placeholder="验证码"
 											 v-model="captcha">
 								<img class="get_verification"
-										 src="http://localhost:4000/captcha"
+										 :src="captchaUrl+nowTime"
 										 alt="captcha"
 										 @click="getCaptcha"
 										 ref="captcha">
@@ -115,6 +115,8 @@ export default {
 			captcha: '', // 图形验证码
 			alertText: '', // 提示文本
 			alertShow: false, // 是否显示警告框
+			captchaUrl: 'http://localhost:4000/captcha?time=',
+			nowTime: Date.now()
 		}
 	},
 	computed: {
@@ -150,9 +152,6 @@ export default {
 					}
 				}
 			}
-
-
-
 		},
 
 		showAlert (alertText) {
@@ -226,7 +225,7 @@ export default {
 		// 获取一个新的图片验证码
 		getCaptcha () {
 			// 每次指定的src要不一样
-			this.$refs.captcha.src = 'http://localhost:4000/captcha?time=' + Date.now()
+			this.$refs.captcha.src = captchaUrl + Date.now()
 		}
 	}
 }

@@ -109,7 +109,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import { MessageBox } from 'mint-ui'
+import { MessageBox, Toast } from 'mint-ui'
 import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
 export default {
 	name: '',
@@ -126,9 +126,15 @@ export default {
 	},
 	methods: {
 		logout () {
-			MessageBox.confirm('确定退出登录吗？').then(action => {
-				this.$store.dispatch('logout')
-			})
+			MessageBox.confirm('确定退出登录吗？').then(
+				action => {
+					this.$store.dispatch('logout')
+					Toast('登出完成')
+				},
+				action => {
+					console.log('点击了取消')
+				}
+			)
 		}
 	}
 }
