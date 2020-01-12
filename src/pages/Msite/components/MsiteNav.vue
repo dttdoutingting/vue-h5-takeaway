@@ -17,7 +17,7 @@
             class="link_to_food"
           >
             <div class="food_container">
-              <img :src="imgBaseUrl+c.image_url" >
+              <img v-lazy="imgBaseUrl+c.image_url" >
             </div>
             <span>{{ c.title }}</span>
           </a>

@@ -14,7 +14,7 @@
         <a>
           <div class="shop_left">
             <img
-              :src="imgBaseUrl+shop.image_path"
+              v-lazy="imgBaseUrl+shop.image_path"
               class="shop_img"
             >
           </div>
