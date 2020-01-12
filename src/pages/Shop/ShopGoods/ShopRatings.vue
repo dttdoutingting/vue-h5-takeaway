@@ -1,6 +1,9 @@
 <template>
 	<div class="page">
-		ShopRatings组件
+		<div class="delivery-wrapper">
+			<span class="title">送达时间</span>
+			<span class="delivery">{{dateTime | date-format}}分钟</span>
+		</div>
 	</div>
 </template>
 
@@ -10,7 +13,7 @@ export default {
 	components: {},
 	data () {
 		return {
-
+			dateTime: 1578794429153
 		}
 	}
 }
