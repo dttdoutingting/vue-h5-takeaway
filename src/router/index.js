@@ -4,19 +4,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Msite from '../pages/Msite/Msite.vue'
-import Search from '../pages/Search/Search.vue'
-import Order from '../pages/Order/Order.vue'
-import Profile from '../pages/Profile/Profile.vue'
-import Login from '../pages/Login/Login.vue'
-import Shop from '../pages/Shop/Shop.vue'
-import ShopGoods from '../pages/Shop/ShopGoods/ShopGoods.vue'
-import ShopRatings from '../pages/Shop/ShopGoods/ShopRatings.vue'
-import ShopInfo from '../pages/Shop/ShopGoods/ShopInfo.vue'
+// 路由懒加载
+const Msite = () => import('../pages/Msite/Msite.vue')
+const Search = () => import('../pages/Search/Search.vue')
+const Order = () => import('../pages/Order/Order.vue')
+const Profile = () => import('../pages/Profile/Profile.vue')
+const Login = () => import('../pages/Login/Login.vue')
+const Shop = () => import('../pages/Shop/Shop.vue')
+const ShopGoods = () => import('../pages/Shop/ShopGoods/ShopGoods.vue')
+const ShopRatings = () => import('../pages/Shop/ShopGoods/ShopRatings.vue')
+const ShopInfo = () => import('../pages/Shop/ShopGoods/ShopInfo.vue')
 
 Vue.use(VueRouter)
 
 export default new VueRouter({
+  // 所有路由
   routes: [
     {
       path: '/',
@@ -24,7 +26,7 @@ export default new VueRouter({
     },
     {
       path: '/msite',
-      component: Msite,
+      component: Msite, // 返回路由组件的函数，只有执行此函数才会加载路由组件，这个函数在第一次请求对应的路由路径时才会执行
       meta: {
         showFooter: true
       }
