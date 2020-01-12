@@ -1,38 +1,44 @@
 <template>
-	<div class="msite">
-		<!-- 首页头部-->
-		<HeaderTop :title="address.name">
-			<router-link slot="search"
-									 to="/serach"
-									 class="header_search">
-				<i class="iconfont icon-sousuo"></i>
-			</router-link>
-			<router-link slot="login"
-									 :to="userInfo._id?'/userInfo':'/login'"
-									 class="header_login">
-				<span class="header_login_text"
-							v-if="userInfo._id">登录|注册</span>
-				<span class="header_login_text"
-							v-else>
-					<i class="iconfont icon-person"></i>
-				</span>
-			</router-link>
-		</HeaderTop>
-		<div class="miste-content-wrapper">
-			<div class="miste-content">
-				<!-- 首页导航-->
-				<MsiteNav />
-				<!-- 首页附近商家-->
-				<div class="msite_shop_list border-1px">
-					<div class="shop_header">
-						<i class="iconfont icon-xuanxiang"></i>
-						<span class="shop_header_title">附近商家</span>
-					</div>
-					<ShopList />
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="msite">
+    <!-- 首页头部-->
+    <HeaderTop :title="address.name">
+      <router-link
+        slot="search"
+        to="/serach"
+        class="header_search">
+        <i class="iconfont icon-sousuo"/>
+      </router-link>
+      <router-link
+        slot="login"
+        :to="userInfo._id?'/userInfo':'/login'"
+        class="header_login">
+        <span
+          v-if="userInfo._id"
+          class="header_login_text"
+        >登录|注册</span>
+        <span
+          v-else
+          class="header_login_text"
+        >
+          <i class="iconfont icon-person"/>
+        </span>
+      </router-link>
+    </HeaderTop>
+    <div class="miste-content-wrapper">
+      <div class="miste-content">
+        <!-- 首页导航-->
+        <MsiteNav />
+        <!-- 首页附近商家-->
+        <div class="msite_shop_list border-1px">
+          <div class="shop_header">
+            <i class="iconfont icon-xuanxiang"/>
+            <span class="shop_header_title">附近商家</span>
+          </div>
+          <ShopList />
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -42,19 +48,19 @@ import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
 import MsiteNav from './components/MsiteNav/MsiteNav.vue'
 import ShopList from '../../components/ShopList/ShopList.vue'
 export default {
-	name: '',
-	components: {
-		HeaderTop,
-		MsiteNav,
-		ShopList
-	},
-	mounted () {
-		this.$store.dispatch('getCategorys')
-		this.$store.dispatch('getShops')
-	},
-	computed: {
-		...mapState(['address', 'userInfo'])
-	}
+  name: '',
+  components: {
+    HeaderTop,
+    MsiteNav,
+    ShopList
+  },
+  computed: {
+    ...mapState(['address', 'userInfo'])
+  },
+  mounted() {
+    this.$store.dispatch('getCategorys')
+    this.$store.dispatch('getShops')
+  }
 }
 </script>
 

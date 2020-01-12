@@ -1,23 +1,23 @@
 <template>
-	<div id="app">
-		<router-view />
-		<FooterGuide v-show="$route.meta.showFooter" />
-	</div>
+  <div id="app">
+    <router-view />
+    <FooterGuide v-show="$route.meta.showFooter" />
+  </div>
 </template>
 
 <script>
 import FooterGuide from './components/FooterGuide/FooterGuide.vue'
 export default {
-	name: 'App',
-	components: {
-		FooterGuide
-	},
-	created () {
-		// 异步获取address
-		this.$store.dispatch('getAddress')
-		// 异步获取登录用户信息
-		this.$store.dispatch('getUserInfo')
-	}
+  name: 'App',
+  components: {
+    FooterGuide
+  },
+  created() {
+    // 异步获取address
+    this.$store.dispatch('getAddress')
+    // 异步获取登录用户信息
+    this.$store.dispatch('getUserInfo')
+  }
 }
 </script>
 

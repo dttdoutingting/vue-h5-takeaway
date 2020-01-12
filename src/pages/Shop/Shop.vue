@@ -1,37 +1,40 @@
 <template>
-	<div>
-		<ShopHeader />
-		<div class="tab">
-			<div class="tab_item">
-				<router-link to="/shop/goods"
-										 replace>点餐</router-link>
-			</div>
-			<div class="tab_item">
-				<router-link to="/shop/ratings"
-										 replace>评价</router-link>
-			</div>
-			<div class="tab_item">
-				<router-link to="/shop/info"
-										 replace>商家</router-link>
-			</div>
-		</div>
-		<router-view />
-	</div>
+  <div>
+    <ShopHeader />
+    <div class="tab">
+      <div class="tab_item">
+        <router-link
+          to="/shop/goods"
+          replace>点餐</router-link>
+      </div>
+      <div class="tab_item">
+        <router-link
+          to="/shop/ratings"
+          replace>评价</router-link>
+      </div>
+      <div class="tab_item">
+        <router-link
+          to="/shop/info"
+          replace>商家</router-link>
+      </div>
+    </div>
+    <router-view />
+  </div>
 </template>
 
 <script>
 import ShopHeader from '../../components/ShopHeader/ShopHeader.vue'
 export default {
-	name: '',
-	components: { ShopHeader },
-	data () {
-		return {
+  name: '',
+  components: { ShopHeader },
+  data() {
+    return {
 
-		}
-	},
-	mounted () {
-		this.$store.dispatch('getShopInfo')
-	}
+    }
+  },
+  mounted() {
+    this.$store.dispatch('getShopInfo')
+  }
 }
 </script>
 

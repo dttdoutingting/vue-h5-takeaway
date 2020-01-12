@@ -1,21 +1,19 @@
 <template>
-	<div class="page">
-		<div class="delivery-wrapper">
-			<span class="title">送达时间</span>
-			<span class="delivery">{{dateTime | date-format}}分钟</span>
-		</div>
-	</div>
+  <div class="delivery-wrapper">
+    <span class="title">送达时间</span>
+    <span class="delivery">{{ dateTime | date-format }}分钟</span>
+  </div>
 </template>
 
 <script>
 export default {
-	name: '',
-	components: {},
-	data () {
-		return {
-			dateTime: 1578794429153
-		}
-	}
+  name: '',
+  components: {},
+  data() {
+    return {
+      dateTime: 1578794429153
+    }
+  }
 }
 </script>
 

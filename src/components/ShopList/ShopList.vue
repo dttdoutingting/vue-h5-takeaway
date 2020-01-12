@@ -1,57 +1,67 @@
 <template>
-	<div class="shop_container">
-		<ul class="shop_list"
-				v-if="shops.length>0">
-			<router-link class="shop_li border-1px"
-									 tag='li'
-									 to="/shop"
-									 v-for="(shop, index) in shops"
-									 :key="index">
-				<a>
-					<div class="shop_left">
-						<img class="shop_img"
-								 :src="imgBaseUrl+shop.image_path">
-					</div>
-					<div class="shop_right">
-						<section class="shop_detail_header">
-							<h4 class="shop_title ellipsis">{{shop.name}}</h4>
-							<ul class="shop_detail_ul">
-								<li class="supports"
-										v-for="support in shop.supports"
-										:key="support.id">
-									{{support.icon_name}}
-								</li>
-							</ul>
-						</section>
-						<section class="shop_rating_order">
-							<section class="shop_rating_order_left">
-								<Star :score="shop.rating"
-											:size="24" />
-								<div class="rating_section"> {{shop.rating}} </div>
-								<div class="order_section"> 月售{{shop.recent_order_num}}单 </div>
-							</section>
-							<section class="shop_rating_order_right">
-								<span class="delivery_style delivery_right">{{shop.delivery_mode.text}}</span>
-							</section>
-						</section>
-						<section class="shop_distance">
-							<p class="shop_delivery_msg">
-								<span>¥{{shop.float_minimum_order_amount}} 起送</span>
-								<span class="segmentation">/</span>
-								<span>配送费约¥{{shop.float_delivery_fee}}</span>
-							</p>
-						</section>
-					</div>
-				</a>
-			</router-link>
-		</ul>
-		<ul v-else>
-			<li v-for="item in 6">
-				<img src="./images/shop_back.svg"
-						 alt="back">
-			</li>
-		</ul>
-	</div>
+  <div class="shop_container">
+    <ul
+      v-if="shops.length>0"
+      class="shop_list"
+    >
+      <router-link
+        v-for="(shop, index) in shops"
+        :key="index"
+        class="shop_li border-1px"
+        tag="li"
+        to="/shop"
+      >
+        <a>
+          <div class="shop_left">
+            <img
+              :src="imgBaseUrl+shop.image_path"
+              class="shop_img"
+            >
+          </div>
+          <div class="shop_right">
+            <section class="shop_detail_header">
+              <h4 class="shop_title ellipsis">{{ shop.name }}</h4>
+              <ul class="shop_detail_ul">
+                <li
+                  v-for="support in shop.supports"
+                  :key="support.id"
+                  class="supports"
+                >
+                  {{ support.icon_name }}
+                </li>
+              </ul>
+            </section>
+            <section class="shop_rating_order">
+              <section class="shop_rating_order_left">
+                <Star
+                  :score="shop.rating"
+                  :size="24" />
+                <div class="rating_section"> {{ shop.rating }} </div>
+                <div class="order_section"> 月售{{ shop.recent_order_num }}单 </div>
+              </section>
+              <section class="shop_rating_order_right">
+                <span class="delivery_style delivery_right">{{ shop.delivery_mode.text }}</span>
+              </section>
+            </section>
+            <section class="shop_distance">
+              <p class="shop_delivery_msg">
+                <span>¥{{ shop.float_minimum_order_amount }} 起送</span>
+                <span class="segmentation">/</span>
+                <span>配送费约¥{{ shop.float_delivery_fee }}</span>
+              </p>
+            </section>
+          </div>
+        </a>
+      </router-link>
+    </ul>
+    <ul v-else>
+      <li v-for="item in 6" :key="item">
+        <img
+          src="./images/shop_back.svg"
+          alt="back">
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -59,18 +69,18 @@ import { mapState } from 'vuex'
 import Star from '../Star/Star.vue'
 
 export default {
-	name: '',
-	components: {
-		Star
-	},
-	data () {
-		return {
-			imgBaseUrl: 'https://fuss10.elemecdn.com'
-		}
-	},
-	computed: {
-		...mapState(['shops'])
-	},
+  name: '',
+  components: {
+    Star
+  },
+  data() {
+    return {
+      imgBaseUrl: 'https://fuss10.elemecdn.com'
+    }
+  },
+  computed: {
+    ...mapState(['shops'])
+  }
 }
 </script>
 

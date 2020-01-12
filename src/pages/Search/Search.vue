@@ -1,32 +1,35 @@
 <template>
-	<section class="search">
-		<HeaderTop title="搜索" />
-		<form class="search_form">
-			<input type="search"
-						 placeholder="请输入商家名称"
-						 class="search_input"
-						 v-model="keyword">
-			<input type="submit"
-						 value="提交"
-						 class="search_submit">
-		</form>
-	</section>
+  <section class="search">
+    <HeaderTop title="搜索" />
+    <form class="search_form">
+      <input
+        v-model="keyword"
+        type="search"
+        placeholder="请输入商家名称"
+        class="search_input"
+      >
+      <input
+        type="submit"
+        value="提交"
+        class="search_submit">
+    </form>
+  </section>
 </template>
 
 <script>
 import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
 export default {
-	name: '',
-	components: {
-		HeaderTop
-	},
-	data () {
-		return {
-			keyword: '',
-			imgBaseUrl: 'http://cangdu.org:8001/img/',
-			noSearchShops: false
-		}
-	}
+  name: '',
+  components: {
+    HeaderTop
+  },
+  data() {
+    return {
+      keyword: '',
+      imgBaseUrl: 'http://cangdu.org:8001/img/',
+      noSearchShops: false
+    }
+  }
 }
 </script>
 

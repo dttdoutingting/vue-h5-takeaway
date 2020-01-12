@@ -10,6 +10,6 @@ import format from 'date-fns/format'
 // })
 
 // 自定义过滤器
-Vue.filter('date-format', function (value, formatStr = 'yyyy-MM-yy HH:mm:ss') {
+Vue.filter('date-format', function(value, formatStr = 'yyyy-MM-yy HH:mm:ss') {
   return format(value, formatStr)
 })

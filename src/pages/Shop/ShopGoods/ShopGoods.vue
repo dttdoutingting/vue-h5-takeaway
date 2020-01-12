@@ -1,18 +1,18 @@
 <template>
-	<div class="page">
-		ShopGoods组件
-	</div>
+  <div class="page">
+    ShopGoods组件
+  </div>
 </template>
 
 <script>
 export default {
-	name: '',
-	components: {},
-	data () {
-		return {
+  name: '',
+  components: {},
+  data() {
+    return {
 
-		}
-	}
+    }
+  }
 }
 </script>
 

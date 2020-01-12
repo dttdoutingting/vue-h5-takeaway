@@ -1,19 +1,20 @@
 <template>
-	<header class="header">
-		<slot name="search"></slot>
-		<span class="header_title">
-			<span class="header_title_text ellipsis">{{title}}</span>
-		</span>
-		<slot name="login"></slot>
-	</header>
+  <header class="header">
+    <slot name="search"/>
+    <span class="header_title">
+      <span class="header_title_text ellipsis">{{ title }}</span>
+    </span>
+    <slot name="login"/>
+  </header>
 </template>
 
 <script>
 
 export default {
-	props: {
-		title: String
-	},
+  props: {
+    // eslint-disable-next-line vue/require-default-prop
+    title: String
+  }
 }
 </script>
 

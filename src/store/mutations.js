@@ -18,38 +18,38 @@ import {
 } from './mutation-types'
 
 export default {
-  [RECEIVE_ADDRESS] (state, { address }) {
+  [RECEIVE_ADDRESS](state, { address }) {
     state.address = address
   },
 
-  [RECEIVE_CATEGORYS] (state, { categorys }) {
+  [RECEIVE_CATEGORYS](state, { categorys }) {
     state.categorys = categorys
   },
 
-  [RECEIVE_SHOPS] (state, { shops }) {
+  [RECEIVE_SHOPS](state, { shops }) {
     state.shops = shops
   },
 
-  [RECEIVE_USER_INFO] (state, { userInfo }) {
+  [RECEIVE_USER_INFO](state, { userInfo }) {
     state.userInfo = userInfo
   },
-  [RESET_USER_INFO] (state) {
+  [RESET_USER_INFO](state) {
     state.userInfo = {}
   },
 
-  [RECEIVE_INFO] (state, { info }) {
+  [RECEIVE_INFO](state, { info }) {
     state.info = info
   },
 
-  [RECEIVE_RATINGS] (state, { ratings }) {
+  [RECEIVE_RATINGS](state, { ratings }) {
     state.ratings = ratings
   },
 
-  [RECEIVE_GOODS] (state, { goods }) {
+  [RECEIVE_GOODS](state, { goods }) {
     state.goods = goods
   },
 
-  [INCREMENT_FOOD_COUNT] (state, { food }) {
+  [INCREMENT_FOOD_COUNT](state, { food }) {
     if (!food.count) { // 第一次增加
       // food.count = 1  // 新增属性(没有数据绑定)
       /*
@@ -64,8 +64,8 @@ export default {
       food.count++
     }
   },
-  [DECREMENT_FOOD_COUNT] (state, { food }) {
-    if (food.count) {// 只有有值才去减
+  [DECREMENT_FOOD_COUNT](state, { food }) {
+    if (food.count) { // 只有有值才去减
       food.count--
       if (food.count === 0) {
         // 将food从cartFoods中移除
@@ -74,15 +74,17 @@ export default {
     }
   },
 
-  [CLEAR_CART] (state) {
-
+  [CLEAR_CART](state) {
     // 清除food中的count
-    state.cartFoods.forEach(food => food.count = 0)
+    state.cartFoods.forEach(food => {
+      food.count = 0
+      return food
+    })
     // 移除购物车中所有购物项
     state.cartFoods = []
   },
 
-  [RECEIVE_SEARCH_SHOPS] (state, { searchShops }) {
+  [RECEIVE_SEARCH_SHOPS](state, { searchShops }) {
     state.searchShops = searchShops
-  },
+  }
 }
