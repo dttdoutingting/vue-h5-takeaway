@@ -44,9 +44,9 @@
 <script>
 import { mapState } from 'vuex'
 import 'swiper/dist/css/swiper.min.css'
-import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
-import MsiteNav from './components/MsiteNav/MsiteNav.vue'
-import ShopList from '../../components/ShopList/ShopList.vue'
+import HeaderTop from '@/components/HeaderTop/index.vue'
+import MsiteNav from './components/MsiteNav.vue'
+import ShopList from '@/components/ShopList/index.vue'
 export default {
   name: '',
   components: {

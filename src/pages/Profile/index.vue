@@ -121,7 +121,7 @@
 <script>
 import { mapState } from 'vuex'
 import { MessageBox, Toast } from 'mint-ui'
-import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
+import HeaderTop from '@/components/HeaderTop/index.vue'
 export default {
   name: '',
   components: {

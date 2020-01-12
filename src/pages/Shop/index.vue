@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import ShopHeader from '../../components/ShopHeader/ShopHeader.vue'
+import ShopHeader from '@/components/ShopHeader/index.vue'
 export default {
   name: '',
   components: { ShopHeader },

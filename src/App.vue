@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import FooterGuide from './components/FooterGuide/FooterGuide.vue'
+import FooterGuide from '@/components/FooterGuide/index.vue'
 export default {
   name: 'App',
   components: {

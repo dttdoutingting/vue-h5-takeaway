@@ -66,7 +66,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import Star from '../Star/Star.vue'
+import Star from '../Star/index.vue'
 
 export default {
   name: '',

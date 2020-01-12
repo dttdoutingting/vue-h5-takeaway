@@ -5,15 +5,15 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 // 路由懒加载
-const Msite = () => import('../pages/Msite/Msite.vue')
-const Search = () => import('../pages/Search/Search.vue')
-const Order = () => import('../pages/Order/Order.vue')
-const Profile = () => import('../pages/Profile/Profile.vue')
-const Login = () => import('../pages/Login/Login.vue')
-const Shop = () => import('../pages/Shop/Shop.vue')
-const ShopGoods = () => import('../pages/Shop/ShopGoods/ShopGoods.vue')
-const ShopRatings = () => import('../pages/Shop/ShopGoods/ShopRatings.vue')
-const ShopInfo = () => import('../pages/Shop/ShopGoods/ShopInfo.vue')
+const Msite = () => import('@/pages/Msite/index')
+const Search = () => import('@/pages/Search/index')
+const Order = () => import('@/pages/Order/index')
+const Profile = () => import('@/pages/Profile/index')
+const Login = () => import('@/pages/Login/index')
+const Shop = () => import('@/pages/Shop/index')
+const ShopGoods = () => import('@/pages/Shop/ShopGoods/ShopGoods.vue')
+const ShopRatings = () => import('@/pages/Shop/ShopGoods/ShopRatings.vue')
+const ShopInfo = () => import('@/pages/Shop/ShopGoods/ShopInfo.vue')
 
 Vue.use(VueRouter)
 

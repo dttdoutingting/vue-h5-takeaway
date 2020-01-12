@@ -120,8 +120,8 @@
 </template>
 
 <script>
-import AlertTip from '../../components/AlertTip/AlertTip.vue'
-import { reqSendCode, reqSmsLogin, reqPwdLogin } from '../../api'
+import AlertTip from '@/components/AlertTip/index.vue'
+import { reqSendCode, reqSmsLogin, reqPwdLogin } from '@/api'
 export default {
   name: '',
   components: { AlertTip },
