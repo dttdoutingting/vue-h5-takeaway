@@ -11,9 +11,9 @@ const Order = () => import('@/pages/Order/index')
 const Profile = () => import('@/pages/Profile/index')
 const Login = () => import('@/pages/Login/index')
 const Shop = () => import('@/pages/Shop/index')
-const ShopGoods = () => import('@/pages/Shop/ShopGoods/ShopGoods.vue')
-const ShopRatings = () => import('@/pages/Shop/ShopGoods/ShopRatings.vue')
-const ShopInfo = () => import('@/pages/Shop/ShopGoods/ShopInfo.vue')
+const ShopGoods = () => import('@/pages/Shop/ShopGoods/index.vue')
+const ShopRatings = () => import('@/pages/Shop/ShopRatings/index.vue')
+const ShopInfo = () => import('@/pages/Shop/ShopInfo/index.vue')
 
 Vue.use(VueRouter)
 
