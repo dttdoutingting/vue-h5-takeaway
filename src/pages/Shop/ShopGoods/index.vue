@@ -7,12 +7,50 @@
           v-for="(good, index) in goods"
           :key="index"
           :class="{current: index===currentIndex}"
-          class="menu-item current"
+          class="menu-item"
           @click="clickMenuItem(index)">
           <span class="text bottom-border-1px">
-            <img v-lazy="good.icon" v-if="good.icon" class="icon" >
+            <img
+              v-lazy="good.icon"
+              v-if="good.icon"
+              class="icon" >
             {{ good.name }}
           </span>
+        </li>
+      </ul>
+    </div>
+    <div class="foods-wrapper">
+      <ul ref="foodsUl">
+        <li
+          v-for="(good, index) in goods"
+          :key="index"
+          class="food-list-hook">
+          <h1 class="title">{{ good.name }}</h1>
+          <ul>
+            <li
+              v-for="(food, index) in good.foods"
+              :key="index"
+              class="food-item bottom-border-1px">
+              <div class="icon">
+                <img v-lazy="food.icon" width="57" height="57" >
+              </div>
+              <div class="content">
+                <h2 class="name">{{ food.name }}</h2>
+                <p class="desc">{{ food.description }}</p>
+                <div class="extra">
+                  <span class="count">月售{{ food.sellCount }}份</span>
+                  <span>好评率{{ food.rating }}%</span>
+                </div>
+                <div class="price">
+                  <span class="now">￥{{ food.price }}</span>
+                  <span v-if="food.oldPrice" class="old" >￥{{ food.oldPrice }}</span>
+                </div>
+                <div class="cartcontrol-wrapper">
+                  CartControl
+                </div>
+              </div>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
@@ -36,15 +74,23 @@ export default {
     ...mapState(['goods']),
 
     // 计算得到当前分类的下标
-    currentIndex() {
-      return 1
+    currentIndex() { // 初始和相关数据发生了变化
+      // 得到条件数据
+      const { scrollY, tops } = this
+      // 根据条件计算产生一个结果
+      const index = tops.findIndex((top, index) => {
+        // scrollY>=当前top && scrollY<下一个top
+        return scrollY >= top && scrollY < tops[index + 1]
+      })
+      // 返回结果
+      return index
     }
   },
   mounted() {
     this.$store.dispatch('getShopGoods', () => { // 数据更新后执行
       this.$nextTick(() => { // 列表数据更新显示后执行
         this._initScroll()
-        // this._initTops()
+        this._initTops()
       })
     })
   },
@@ -55,11 +101,52 @@ export default {
       new BScroll('.menu-wrapper', {
         click: true
       })
+      this.foodsScroll = new BScroll('.foods-wrapper', {
+        probeType: 2, // 因为惯性滑动不会触发
+        click: true
+      })
+
+      // 给右侧列表绑定scroll监听
+      this.foodsScroll.on('scroll', ({ x, y }) => {
+        // console.log(x, y)
+        this.scrollY = Math.abs(y)
+      })
+
+      // 给右侧列表绑定scrollEnd监听
+      this.foodsScroll.on('scrollEnd', ({ x, y }) => {
+        // console.log('scrollEnd', x, y)
+        this.scrollY = Math.abs(y)
+      })
+    },
+    // 初始化tops
+    _initTops() {
+      // 1. 初始化tops
+      const tops = []
+      let top = 0
+      tops.push(top)
+      // 2. 收集
+      // 找到所有分类li
+      const lis = this.$refs.foodsUl.getElementsByClassName('food-list-hook')
+      Array.prototype.slice.call(lis).forEach(li => {
+        top += li.clientHeight
+        tops.push(top)
+      })
+
+      // 3. 更新数据
+      this.tops = tops
+      // console.log(tops)
     },
     clickMenuItem(index) {
-      console.log(index)
-    }
+      // console.log(index)
+      // 使用右侧列表滑动到对应的位置
 
+      // 得到目标位置的scrollY
+      const scrollY = this.tops[index]
+      // 立即更新scrollY(让点击的分类项成为当前分类)
+      this.scrollY = scrollY
+      // 平滑滑动右侧列表
+      this.foodsScroll.scrollTo(0, -scrollY, 300)
+    }
   }
 }
 </script>
@@ -107,4 +194,59 @@ export default {
           vertical-align: middle
           bottom-border-1px(rgba(7, 17, 27, 0.1))
           font-size: 12px
+
+    .foods-wrapper
+      flex: 1
+      .title
+        padding-left: 14px
+        height: 26px
+        line-height: 26px
+        border-left: 2px solid #d9dde1
+        font-size: 12px
+        color: rgb(147, 153, 159)
+        background: #f3f5f7
+      .food-item
+        display: flex
+        margin: 18px
+        padding-bottom: 18px
+        bottom-border-1px(rgba(7, 17, 27, 0.1))
+        &:last-child
+          border-none()
+          margin-bottom: 0
+        .icon
+          flex: 0 0 57px
+          margin-right: 10px
+        .content
+          flex: 1
+          .name
+            margin: 2px 0 8px 0
+            height: 14px
+            line-height: 14px
+            font-size: 14px
+            color: rgb(7, 17, 27)
+          .desc, .extra
+            line-height: 10px
+            font-size: 10px
+            color: rgb(147, 153, 159)
+          .desc
+            line-height: 12px
+            margin-bottom: 8px
+          .extra
+            .count
+              margin-right: 12px
+          .price
+            font-weight: 700
+            line-height: 24px
+            .now
+              margin-right: 8px
+              font-size: 14px
+              color: rgb(240, 20, 20)
+            .old
+              text-decoration: line-through
+              font-size: 10px
+              color: rgb(147, 153, 159)
+          .cartcontrol-wrapper
+            position: absolute
+            right: 0
+            bottom: 12px
 </style>
