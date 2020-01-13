@@ -1,5 +1,5 @@
 <template>
-  <div class="goods">
+  <div><div class="goods">
     <div class="menu-wrapper">
       <ul>
         <!--current-->
@@ -30,7 +30,8 @@
             <li
               v-for="(food, index) in good.foods"
               :key="index"
-              class="food-item bottom-border-1px">
+              class="food-item bottom-border-1px"
+              @click="showFood(food)">
               <div class="icon">
                 <img v-lazy="food.icon" width="57" height="57" >
               </div>
@@ -56,18 +57,22 @@
     </div>
     <ShopCart />
   </div>
+    <Food ref="food" :food="food" />
+  </div>
 </template>
 
 <script>
 import BScroll from 'better-scroll'
 import CartControl from '@/components/CartControl/index.vue'
 import ShopCart from '@/components/ShopCart/index.vue'
+import Food from '../../../components/Food/index.vue'
 import { mapState } from 'vuex'
 export default {
   name: '',
   components: {
     CartControl,
-    ShopCart
+    ShopCart,
+    Food
   },
   data() {
     return {
@@ -152,6 +157,13 @@ export default {
       this.scrollY = scrollY
       // 平滑滑动右侧列表
       this.foodsScroll.scrollTo(0, -scrollY, 300)
+    },
+    // 显示点击的food
+    showFood(food) {
+      // 设置food
+      this.food = food
+      // 显示food组件 (在父组件中调用子组件对象的方法)
+      this.$refs.food.toggleShow()
     }
   }
 }
