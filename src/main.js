@@ -6,6 +6,7 @@ import VueLazyload from 'vue-lazyload'
 import App from './App'
 import router from './router'
 import store from './store'
+import Split from './components/Split/index.vue'
 
 import './mock/mockServer' // 加载mockServer即可
 import './filters' // 加载过滤器
@@ -17,6 +18,7 @@ Vue.use(VueLazyload, {
 
 // 注册全局组件标签
 Vue.component(Button.name, Button) // <mt-button>
+Vue.component('Split', Split)
 
 /* eslint-disable no-new */
 new Vue({
