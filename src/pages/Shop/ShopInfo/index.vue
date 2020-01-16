@@ -5,68 +5,27 @@
         <h3 class="section-title">配送信息</h3>
         <div class="delivery">
           <div>
-            <span class="delivery-icon">硅谷专送</span>
-            <span>由商家配送提供配送，约28分钟送达，距离1000m</span>
+            <span class="delivery-icon">{{ info.description }}</span>
+            <span>由商家配送提供配送，约{{ info.deliveryTime }}分钟送达，距离{{ info.distance }}</span>
           </div>
-          <div class="delivery-money">配送费￥4</div>
+          <div class="delivery-money">配送费￥{{ info.deliveryPrice }}</div>
         </div>
       </section>
       <Split />
       <section class="section">
         <h3 class="section-title">活动与服务</h3>
         <div class="activity">
-          <div class="activity-item activity-green">
+          <div
+            v-for="(support, index) in info.supports"
+            :key="index"
+            :class="supportClasses[support.type]"
+            class="activity-item">
             <span class="content-tag">
-              <span class="mini-tag">首单</span>
+              <span class="mini-tag">{{ support.name }}</span>
             </span>
             <span class="activity-content">
-              新用户下单立减17元(不与其它活动同享)
+              {{ support.content }}
             </span>
-          </div>
-          <div class="activity-item activity-red">
-            <span class="content-tag">
-              <span class="mini-tag">满减</span>
-            </span>
-            <span class="activity-content">
-              满35减19，满65减35
-            </span>
-          </div>
-          <div class="activity-item activity-orange">
-            <span class="content-tag">
-              <span class="mini-tag">特价</span>
-            </span>
-            <span class="activity-content">
-              【立减19.5元】欢乐小食餐</span>
-          </div>
-          <div class="activity-item activity-orange">
-            <span class="content-tag">
-              <span class="mini-tag">特价</span>
-            </span>
-            <span class="activity-content">【立减29元】火烤菠萝皇堡双人餐</span>
-          </div>
-          <div class="activity-item activity-orange">
-            <span class="content-tag">
-              <span class="mini-tag">特价</span>
-            </span>
-            <span class="activity-content">【立减16.5元】火烤菠萝皇堡单人餐</span>
-          </div>
-          <div class="activity-item activity-orange">
-            <span class="content-tag">
-              <span class="mini-tag">特价</span>
-            </span>
-            <span class="activity-content">【立减15】经典安格斯单人餐</span>
-          </div>
-          <div class="activity-item activity-orange">
-            <span class="content-tag">
-              <span class="mini-tag">特价</span>
-            </span>
-            <span class="activity-content">【立减11.95】皇堡双人餐</span>
-          </div>
-          <div class="activity-item activity-orange">
-            <span class="content-tag">
-              <span class="mini-tag">特价</span>
-            </span>
-            <span class="activity-content">【立减19.8】半价单人餐</span>
           </div>
         </div>
       </section>
@@ -74,25 +33,12 @@
       <section class="section" style="pointer-events: auto;">
         <h3 class="section-title">商家实景</h3>
         <div class="pic-wrapper">
-          <ul
-            class="pic-list"
-            style="width: 624px; transition-property: transform;
-            transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
-            transition-duration: 0ms; transform: translate(0px, 0px) scale(1) translateZ(0px);">
-            <li class="pic-item" style="pointer-events: auto;">
-              <img width="120" height="90" src="https://fuss10.elemecdn.com/f/7f/d1422ec824a0a9d1fb879c57ab533jpeg.jpeg">
-            </li>
-            <li class="pic-item" style="pointer-events: auto;">
-              <img width="120" height="90" src="https://fuss10.elemecdn.com/6/82/2cd3d681f5e93292b3eb49d6b412ajpeg.jpeg">
-            </li>
-            <li class="pic-item" style="pointer-events: auto;">
-              <img width="120" height="90" src="https://fuss10.elemecdn.com/8/93/4cf527b6462eea634f69755374f88jpeg.jpeg">
-            </li>
-            <li class="pic-item" style="pointer-events: auto;">
-              <img width="120" height="90" src="https://fuss10.elemecdn.com/3/f2/2a8796ba025a5773fd685a95ac369jpeg.jpeg">
-            </li>
-            <li class="pic-item" style="pointer-events: auto;">
-              <img width="120" height="90" src="https://fuss10.elemecdn.com/a/c4/5a78f477fd616a51ce33586a76ddbjpeg.jpeg">
+          <ul ref="picsUl" class="pic-list" >
+            <li
+              v-for="(pic, index) in info.pics"
+              :key="index"
+              class="pic-item">
+              <img v-lazy="pic" width="120" height="90">
             </li>
           </ul>
         </div>
@@ -103,19 +49,19 @@
         <ul class="detail">
           <li>
             <span class="bold">品类</span>
-            <span>包子粥店, 简餐</span>
+            <span>{{ info.category }}</span>
           </li>
           <li>
             <span class="bold">商家电话</span>
-            <span>18501083744</span>
+            <span>{{ info.phone }}</span>
           </li>
           <li>
             <span class="bold">地址</span>
-            <span>北京市丰台区太平桥44号</span>
+            <span>{{ info.address }}</span>
           </li>
           <li>
             <span class="bold">营业时间</span>
-            <span>09:35-24:00</span>
+            <span>{{ info.workTime }}</span>
           </li>
         </ul>
       </section>
@@ -125,19 +71,52 @@
 
 <script>
 import BScroll from 'better-scroll'
+import { mapState } from 'vuex'
 export default {
   name: '',
   components: {},
   data() {
     return {
-
+      supportClasses: ['activity-green', 'activity-red', 'activity-orange']
     }
   },
+  computed: {
+    ...mapState(['info'])
+  },
+
+  watch: {
+    info() { // 刷新流程--> 更新数据
+      this.$nextTick(() => {
+        this._initScroll()
+      })
+    }
+  },
+
   mounted() {
-    new BScroll('.shop-info')
-    new BScroll('.pic-wrapper', {
-      scrollX: true // 水平滑动
-    })
+    // 如果数据还没有, 直接结束
+    if (!this.info.pics) {
+      return
+    }
+
+    // 数据有了, 可以创建BScroll对象形成滑动
+    this._initScroll()
+  },
+
+  methods: {
+    _initScroll() {
+      new BScroll('.shop-info')
+
+      // 动态计算ul的宽度
+      const ul = this.$refs.picsUl
+      const liWidth = 120
+      const space = 6
+      const count = this.info.pics.length
+      ul.style.width = (liWidth + space) * count - space + 'px'
+
+      new BScroll('.pic-wrapper', {
+        scrollX: true // 水平滑动
+      })
+    }
   }
 }
 </script>
