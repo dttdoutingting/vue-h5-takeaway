@@ -30,7 +30,7 @@
         </div>
       </section>
       <Split />
-      <section class="section" style="pointer-events: auto;">
+      <section class="section">
         <h3 class="section-title">商家实景</h3>
         <div class="pic-wrapper">
           <ul ref="picsUl" class="pic-list" >
@@ -44,7 +44,7 @@
         </div>
       </section>
       <Split />
-      <section class="section" style="pointer-events: auto;">
+      <section class="section">
         <h3 class="section-title">商家信息</h3>
         <ul class="detail">
           <li>
